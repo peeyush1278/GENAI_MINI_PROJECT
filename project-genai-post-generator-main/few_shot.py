@@ -1,11 +1,15 @@
+import os
 import pandas as pd
 import json
 
 
 class FewShotPosts:
-    def __init__(self, file_path="project-genai-post-generator-main\data\processed_posts.json"):
+    def __init__(self, file_path=None):
         self.df = None
         self.unique_tags = None
+        if file_path is None:
+            base_dir = os.path.dirname(os.path.abspath(__file__))
+            file_path = os.path.join(base_dir, "data", "processed_posts.json")
         self.load_posts(file_path)
 
     def load_posts(self, file_path):
